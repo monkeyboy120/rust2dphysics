@@ -31,8 +31,8 @@ impl Vec2 {
 
     fn perp(self) -> Self {
         Self {
-            x: -self.x,
-            y: self.y,
+            x: -self.y,
+            y: self.x,
         }
     }
 
