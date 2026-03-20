@@ -184,6 +184,22 @@ impl Body {
         self.inv_inertia
     }
 
+    pub fn position(&self) -> Vec2 {
+        self.position
+    }
+
+    pub fn rotation(&self) -> f32 {
+        self.rotation
+    }
+
+    pub fn linear_velocity(&self) -> Vec2 {
+        self.linear_velocity
+    }
+
+    pub fn angular_velocity(&self) -> f32 {
+        self.angular_velocity
+    }
+
     pub fn is_circle(&self) -> bool {
         // use matches to compare
         matches!(&self.shape, Shape::Circle { .. })
@@ -221,5 +237,21 @@ impl Body {
 
     pub fn angular_acceleration(&self) -> f32 {
         self.torque * self.inv_inertia
+    }
+
+    pub(crate) fn add_linear_velocity_delta(&mut self, delta: Vec2) {
+        self.linear_velocity += delta;
+    }
+
+    pub(crate) fn add_angular_velocity_delta(&mut self, delta: f32) {
+        self.angular_velocity += delta;
+    }
+
+    pub(crate) fn translate(&mut self, delta: Vec2) {
+        self.position += delta;
+    }
+
+    pub(crate) fn rotate(&mut self, delta: f32) {
+        self.rotation += delta;
     }
 }
